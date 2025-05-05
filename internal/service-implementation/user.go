@@ -4,7 +4,6 @@ import (
 	"context"
 	"errors"
 	"log"
-	"net/http"
 	"time"
 
 	"golang.org/x/crypto/bcrypt"
@@ -17,7 +16,6 @@ import (
 )
 
 type UserClient struct {
-	Http   http.Client
 	Config *config.Config
 	UserDB repositories.UserDB
 }
