@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"predictive-platform/internal/domain/model"
 	"time"
 
 	"gorm.io/driver/postgres"
@@ -43,7 +44,14 @@ func Init(cfg *config.Config) (*gorm.DB, error) {
 		return nil, errors.New("couldn't get DB object")
 	}
 
-	err = dbConn.AutoMigrate()
+	err = dbConn.AutoMigrate(
+		&model.League{},
+		&model.User{},
+		&model.Match{},
+		&model.LeagueMember{},
+		&model.Prediction{},
+	)
+
 	if err != nil {
 		log.Println("error migrating tables: ", err)
 		log.Panic(err)

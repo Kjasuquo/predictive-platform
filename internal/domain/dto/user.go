@@ -11,8 +11,8 @@ type User struct {
 	ID       string `json:"id"`
 	Name     string `json:"name"`
 	Email    string `json:"email"`
-	Admin    bool   `json:"admin"`
 	Password string `json:"password"`
+	Points   int    `json:"points"`
 }
 
 func (u *User) IsValid() bool {

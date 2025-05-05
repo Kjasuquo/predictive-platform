@@ -7,19 +7,12 @@ import (
 	"predictive-platform/internal/domain/dto"
 )
 
-const (
-	Admin       = "admin"
-	RegularUser = "user"
-)
-
-// User represents an app user
 type User struct {
 	Models
 	Name         string `json:"name"`
 	Email        string `json:"email" gorm:"unique"`
 	PasswordHash string `json:"password_hash"`
-	Image        string `json:"image"`
-	Admin        bool   `json:"admin"`
+	Points       int    `json:"points"`
 }
 
 func (u *User) HashPassword(password string) error {
@@ -33,10 +26,10 @@ func (u *User) HashPassword(password string) error {
 
 func (u *User) ToUserDTO() *dto.User {
 	out := &dto.User{
-		ID:    u.ID,
-		Name:  u.Name,
-		Email: u.Email,
-		Admin: u.Admin,
+		ID:     u.ID,
+		Name:   u.Name,
+		Email:  u.Email,
+		Points: u.Points,
 	}
 	return out
 }
@@ -50,7 +43,7 @@ func FromUserDTO(u *dto.User) *User {
 		Models: model,
 		Name:   u.Name,
 		Email:  u.Email,
-		Admin:  u.Admin,
+		Points: u.Points,
 	}
 
 	if u.Password != "" {
