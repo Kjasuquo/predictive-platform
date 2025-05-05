@@ -15,14 +15,16 @@ import (
 )
 
 type Handler struct {
-	Config      *config.Config
-	UserService services.UserService
+	Config        *config.Config
+	UserService   services.UserService
+	LeagueService services.LeagueService
 }
 
-func NewHandler(cfg *config.Config, userService services.UserService) *Handler {
+func NewHandler(cfg *config.Config, userService services.UserService, leagueService services.LeagueService) *Handler {
 	return &Handler{
-		Config:      cfg,
-		UserService: userService,
+		Config:        cfg,
+		UserService:   userService,
+		LeagueService: leagueService,
 	}
 }
 

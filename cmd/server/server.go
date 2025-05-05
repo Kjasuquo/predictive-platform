@@ -30,7 +30,10 @@ func Start() {
 	userDB := dbImplementation.NewUserDB(database)
 	user := serviceimplementation.NewUserClient(cfg, userDB)
 
-	h := api.NewHandler(cfg, user)
+	leagueDB := dbImplementation.NewLeagueDB(database)
+	league := serviceimplementation.NewLeagueClient(cfg, leagueDB)
+
+	h := api.NewHandler(cfg, user, league)
 
 	r := DefineRoutes(h)
 
